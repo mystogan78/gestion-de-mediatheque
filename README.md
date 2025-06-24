@@ -60,4 +60,4 @@ Elle permet de gérer :
 
 1. Cloner le dépôt  
 ```bash
-git clone https://github.com/ton_compte/ton_repo.git
+git clone https://github.com/mystogan78/gestion-de-mediatheque.git
