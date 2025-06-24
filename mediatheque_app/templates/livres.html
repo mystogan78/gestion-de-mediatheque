@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des livres</title>
+</head>
+<body>
+    <h1>Liste des livres</h1>
+
+    {% if livres %}
+        <ul>
+            {% for livre in livres %}
+                <li>
+                    <strong>{{ livre.name }}</strong> par {{ livre.auteur }} <br>
+                    Statut :
+                    {% if livre.disponible %}
+                        Disponible <br>
+                        <a href="{% url 'creer_emprunt_livre' livre.id 1 %}">Emprunter ce livre (Emprunteur 1)</a>
+                    {% else %}
+                        Emprunté <br>
+                        {% if livre.emprunt_en_cours %}
+                            <a href="{% url 'rendre_emprunt_livre' livre.emprunt_en_cours.id %}">Rendre ce livre</a>
+                        {% endif %}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Aucun livre pour le moment.</p>
+    {% endif %}
+
+    <p><a href="/menu/">Retour au menu</a></p>
+</body>
+</html>
+

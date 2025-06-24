@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des jeux</title>
+</head>
+<body>
+<h1>Liste des jeux de plateau</h1>
+
+{% if jeux %}
+<ul>
+    {% for jeu in jeux %}
+    <li>
+        <strong>{{ jeu.name }}</strong> par {{ jeu.createur }} <br>
+        Disponible en consultation uniquement
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Aucun jeu de plateau pour le moment</p>
+{% endif %}
+
+<p><a href="/menu/">Retour au menu</a></p>
+</body>
+</html>

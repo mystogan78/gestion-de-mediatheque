@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des cds</title>
+</head>
+<body>
+<h1>Liste des cds</h1>
+{% if cds %}
+<ul>
+    {% for cd in cds %}
+    <li>
+        <strong>{{ cd.name }}</strong> par {{ cd.artiste }}<br>
+       statut:
+         {% if cd.disponible %}
+        Disponible <br>
+        <a href="{% url 'creer_emprunt_cd' cd.id 1 %}">Emprunter ce cd (Emprunteur 1)</a>
+        {% else %}
+        Emprunté <br>
+             {% if cd.emprunt_en_cours %}
+         <a href="{% url 'rendre_emprunt_cd' cd.emprunt_en_cours.id %}" >Rendre ce cd</a>
+        {% endif %}
+
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Aucun cd pour le moment</p>
+{% endif %}
+<p><a href="/menu/">Retour au menu</a> </p>
+</body>
+</html>
